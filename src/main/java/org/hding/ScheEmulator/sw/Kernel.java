@@ -7,8 +7,7 @@ import org.hding.ScheEmulator.base.Pair;
  */
 public class Kernel extends BaseElement {
     int id;
-    int enterTime;
-    Pair range;
+    Pair groupSize;
     public Kernel(Pair topLeft, Pair length) {
         super(topLeft, length);
     }

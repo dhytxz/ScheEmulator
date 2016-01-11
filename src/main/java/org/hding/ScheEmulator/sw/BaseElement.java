@@ -5,7 +5,7 @@ import org.hding.ScheEmulator.base.Pair;
 /**
  * Created by hding on 1/10/16.
  */
-public class BaseElement {
+public class BaseElement implements Comparable<BaseElement> {
     Pair topLeft;
     Pair length;
     public BaseElement(Pair topLeft) {
@@ -19,6 +19,13 @@ public class BaseElement {
     public BaseElement(BaseElement o) {
         this.topLeft = new Pair(o.topLeft);
         this.length = new Pair(o.length);
+    }
+    @Override
+    public int compareTo(BaseElement o) {
+        if (this.topLeft.getX() == o.topLeft.getX()) {
+            return this.topLeft.getY() - o.topLeft.getY();
+        }
+        return this.topLeft.getX() - o.topLeft.getX();
     }
     @Override
     public String toString() {
