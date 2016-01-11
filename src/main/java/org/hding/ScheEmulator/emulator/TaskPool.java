@@ -23,4 +23,13 @@ public class TaskPool {
     public void addTask(HTDT table) {
         taskQueue.offer(table);
     }
+    public boolean isEmpty() {
+        return taskQueue.isEmpty();
+    }
+    public HTDT getTask() {
+        return taskQueue.poll();
+    }
+    public HTDT peekTask() {
+        return taskQueue.peek();
+    }
 }
