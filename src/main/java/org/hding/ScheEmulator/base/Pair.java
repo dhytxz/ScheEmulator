@@ -29,4 +29,8 @@ public class Pair {
         this.x = o.x;
         this.y = o.y;
     }
+    @Override
+    public String toString() {
+        return x + "," + y;
+    }
 }

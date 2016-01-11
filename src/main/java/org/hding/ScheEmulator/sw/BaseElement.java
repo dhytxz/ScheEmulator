@@ -20,4 +20,8 @@ public class BaseElement {
         this.topLeft = new Pair(o.topLeft);
         this.length = new Pair(o.length);
     }
+    @Override
+    public String toString() {
+        return topLeft.toString() + ";" + length.toString();
+    }
 }

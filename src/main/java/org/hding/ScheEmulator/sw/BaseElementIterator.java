@@ -26,10 +26,10 @@ public class BaseElementIterator<E extends BaseElement> implements Iterator<E> {
             return false;
         }
         if (nextPair.getY() + step.getY() >= maxRange.getY()) {
-            nextPair.setX(0);
-            nextPair.setY(nextPair.getY() + step.getY());
-        } else {
+            nextPair.setY(0);
             nextPair.setX(nextPair.getX() + step.getX());
+        } else {
+            nextPair.setY(nextPair.getY() + step.getY());
         }
         return true;
     }
