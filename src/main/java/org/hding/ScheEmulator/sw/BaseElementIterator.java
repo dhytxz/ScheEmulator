@@ -20,6 +20,10 @@ public class BaseElementIterator<E extends BaseElement> implements Iterator<E> {
     }
     @Override
     public boolean hasNext() {
+        if (nextPair == null) {
+            nextPair = start;
+            return true;
+        }
         nextPair = new Pair(start);
         if (nextPair.getX() + step.getX() >= maxRange.getX() &&
                 nextPair.getY() + step.getY() >= maxRange.getY()) {
