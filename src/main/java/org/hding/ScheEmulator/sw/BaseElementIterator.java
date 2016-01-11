@@ -45,8 +45,4 @@ public class BaseElementIterator<E extends BaseElement> implements Iterator<E> {
         BaseElement res = new BaseElement(nextPair, new Pair(lengthX, lengthY));
         return (E)res;
     }
-    @Override
-    public void remove() {
-        // throws new UnsupportedOperationException();
-    }
 }

@@ -5,6 +5,7 @@ package org.hding.ScheEmulator.hw;
  */
 public class Scheduler {
     public boolean schedule(HTDTQueue hwQueue, HardwareThread ht) {
+
         return true;
     }
 }
