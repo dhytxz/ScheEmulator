@@ -1,5 +1,6 @@
 package org.hding.ScheEmulator.hw;
 
+import org.hding.ScheEmulator.sw.BaseElementCollection;
 import org.hding.ScheEmulator.sw.WorkGroup;
 import org.hding.ScheEmulator.sw.WorkItem;
 
@@ -19,8 +20,8 @@ public class Scheduler {
             if (temp == null ) {
                 return true;
             }
-            for (WorkItem wi : temp) {
-                hardwareThread.getQueueItem().offer(wi);
+            for (BaseElementCollection baseElementCollection : temp) {
+                hardwareThread.getQueueItem().offer(new WorkItem(baseElementCollection));
             }
         }
         //consume remaining work items

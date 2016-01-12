@@ -1,6 +1,7 @@
 package org.hding.ScheEmulator.hw;
 
 import org.hding.ScheEmulator.base.HTStatus;
+import org.hding.ScheEmulator.sw.BaseElementCollection;
 import org.hding.ScheEmulator.sw.WorkGroup;
 
 /**
@@ -26,8 +27,8 @@ public class QueueManager {
                 }
                 temp.status = HTStatus.FINISHED;
             } else if (temp.status == HTStatus.READY) {
-                for (WorkGroup wg : temp.kernel) {
-                    temp.groupQueue.offer(wg);
+                for (BaseElementCollection baseElementCollection : temp.kernel) {
+                    temp.groupQueue.offer(new WorkGroup(baseElementCollection));
                 }
                 temp.status = HTStatus.RUNNING;
                 return temp.groupQueue.poll();

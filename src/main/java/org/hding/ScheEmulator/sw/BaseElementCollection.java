@@ -7,11 +7,16 @@ import java.util.Iterator;
 /**
  * Created by hding on 1/10/16.
  */
-public class BaseElementCollection<E extends BaseElementCollection>
-        implements Iterable<E>, Comparable<BaseElementCollection> {
+public class BaseElementCollection
+        implements Iterable<BaseElementCollection>, Comparable<BaseElementCollection> {
     Pair start;
     Pair step;
     Pair maxRange;
+    public BaseElementCollection(BaseElementCollection o) {
+        this.start = new Pair(o.start);
+        this.step = new Pair(o.step);
+        this.maxRange = new Pair(o.maxRange);
+    }
     public BaseElementCollection(Pair start, Pair step, Pair maxRange) {
         this.start = start;
         this.step = step;
@@ -28,8 +33,8 @@ public class BaseElementCollection<E extends BaseElementCollection>
         this.maxRange = new Pair(1, 1);
     }
     @Override
-    public Iterator<E> iterator() {
-        return new BaseElementIterator<E>(start, step, maxRange);
+    public Iterator<BaseElementCollection> iterator() {
+        return new BaseElementIterator(start, step, maxRange);
     }
     @Override
     public int compareTo(BaseElementCollection o) {
