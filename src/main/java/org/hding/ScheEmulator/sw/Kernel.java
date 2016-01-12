@@ -10,6 +10,9 @@ public class Kernel extends BaseElementCollection<WorkGroup> {
     public Kernel(Pair start, Pair groupSize, Pair maxRange) {
         super(start, groupSize, maxRange);
     }
+    public Kernel(Pair groupSize, Pair maxRange) {
+        super(new Pair(0, 0), groupSize, maxRange);
+    }
     public Pair getGroupSize() {
         return this.step;
     }
