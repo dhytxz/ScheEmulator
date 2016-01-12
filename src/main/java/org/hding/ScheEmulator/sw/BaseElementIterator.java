@@ -12,11 +12,14 @@ public class BaseElementIterator implements Iterator<BaseElementCollection> {
     private Pair step;
     private Pair maxRange;
     private Pair nextPair;
+    private Pair absRange;
     public BaseElementIterator(Pair start, Pair step, Pair maxRange) {
         this.start = start;
         this.step = step;
         this.maxRange = maxRange;
         this.nextPair = null;
+        this.absRange = new Pair(this.start.getX() + this.maxRange.getX(),
+                                 this.start.getY() + this.maxRange.getY());
     }
     @Override
     public boolean hasNext() {
@@ -25,11 +28,11 @@ public class BaseElementIterator implements Iterator<BaseElementCollection> {
             return true;
         }
         nextPair = new Pair(start);
-        if (nextPair.getX() + step.getX() >= maxRange.getX() &&
-                nextPair.getY() + step.getY() >= maxRange.getY()) {
+        if (nextPair.getX() + step.getX() >= absRange.getX() &&
+                nextPair.getY() + step.getY() >= absRange.getY()) {
             return false;
         }
-        if (nextPair.getY() + step.getY() >= maxRange.getY()) {
+        if (nextPair.getY() + step.getY() >= absRange.getY()) {
             nextPair.setY(0);
             nextPair.setX(nextPair.getX() + step.getX());
         } else {
@@ -40,8 +43,8 @@ public class BaseElementIterator implements Iterator<BaseElementCollection> {
     @Override
     public BaseElementCollection next() {
         start = nextPair;
-        int lengthX = Math.min(step.getX(), maxRange.getX() - nextPair.getX());
-        int lengthY = Math.min(step.getY(), maxRange.getY() - nextPair.getY());
+        int lengthX = Math.min(step.getX(), absRange.getX() - nextPair.getX());
+        int lengthY = Math.min(step.getY(), absRange.getY() - nextPair.getY());
         BaseElementCollection res = new BaseElementCollection(nextPair, new Pair(lengthX, lengthY));
         return res;
     }

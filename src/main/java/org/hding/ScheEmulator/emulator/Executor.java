@@ -25,9 +25,9 @@ public class Executor {
             }
             boolean isAllFinished = true;
             for (HardwareThread hardwareThread : computeDevice) {
-                isAllFinished = isAllFinished && scheduler.schedule(queueManager, hardwareThread);
+                isAllFinished = scheduler.schedule(queueManager, hardwareThread) && isAllFinished;
             }
-            if (taskPool.isEmpty() && isAllFinished) {
+            if (taskPool.isEmpty() && isAllFinished && queueManager.isQueueEmpty()) {
                 break;
             }
             timeStamp++;

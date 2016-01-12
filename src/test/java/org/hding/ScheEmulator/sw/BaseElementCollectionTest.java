@@ -11,8 +11,8 @@ import org.junit.Assert;
 public class BaseElementCollectionTest {
     @Test(timeout = 200)
     public void testBaseElementCollection() {
-        BaseElementCollection<BaseElementCollection> groups =
-                new BaseElementCollection<BaseElementCollection>(new Pair(0, 0), new Pair(2, 2), new Pair(3, 7));
+        BaseElementCollection groups =
+                new BaseElementCollection(new Pair(0, 0), new Pair(2, 2), new Pair(3, 7));
         for (BaseElementCollection be : groups) {
             System.out.println(be);
         }
