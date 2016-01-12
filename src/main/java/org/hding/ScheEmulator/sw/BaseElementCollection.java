@@ -40,6 +40,6 @@ public class BaseElementCollection<E extends BaseElementCollection>
     }
     @Override
     public String toString() {
-        return start.toString() + ";" + step.toString() + ";" + maxRange.toString();
+        return "(" + start.toString() + ";" + step.toString() + ";" + maxRange.toString() + ")";
     }
 }

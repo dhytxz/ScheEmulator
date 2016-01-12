@@ -17,4 +17,8 @@ public class Task implements Comparable<Task> {
     public int compareTo(Task o) {
         return this.enterTimeStamp - o.enterTimeStamp;
     }
+    @Override
+    public String toString() {
+        return table.toString();
+    }
 }

@@ -8,17 +8,18 @@ import java.util.*;
  * Created by hding on 1/11/16.
  */
 public class HardwareThread extends BaseThread<HardwareSubthread> {
-    int numHST;
     Queue<WorkItem> queueItem;
     public HardwareThread(int numHST) {
         super(numHST);
-        this.numHST = numHST;
-        for (HardwareSubthread hst : list) {
-            hst = new HardwareSubthread();
+        for (int i = 0; i < numHST; i++) {
+            list.add(new HardwareSubthread());
         }
         queueItem = new PriorityQueue<WorkItem>();
     }
     public Queue<WorkItem> getQueueItem() {
         return queueItem;
+    }
+    public int getNumHST() {
+        return listSize;
     }
 }

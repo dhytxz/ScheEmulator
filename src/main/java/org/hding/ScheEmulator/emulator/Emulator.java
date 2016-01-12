@@ -20,5 +20,6 @@ public class Emulator {
                                   new Kernel(new Pair(1, 3), new Pair(1, 9)),
                                   100));
         executor.run();
+        System.out.print(executor.timeStamp);
     }
 }

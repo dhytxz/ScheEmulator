@@ -32,4 +32,8 @@ public class HTDT implements Comparable<HTDT> {
         }
         return o.priority - this.priority;
     }
+    @Override
+    public String toString() {
+        return "(" + enterTimeStamp + ";" + kernel.toString() + ";" + priority + ")";
+    }
 }
