@@ -7,7 +7,7 @@ import java.util.Iterator;
 /**
  * Created by hding on 1/10/16.
  */
-public class BaseElementIterator<E extends BaseElement> implements Iterator<E> {
+public class BaseElementIterator<E extends BaseElementCollection> implements Iterator<E> {
     private Pair start;
     private Pair step;
     private Pair maxRange;
@@ -42,7 +42,7 @@ public class BaseElementIterator<E extends BaseElement> implements Iterator<E> {
         start = nextPair;
         int lengthX = Math.min(step.getX(), maxRange.getX() - nextPair.getX());
         int lengthY = Math.min(step.getY(), maxRange.getY() - nextPair.getY());
-        BaseElement res = new BaseElement(nextPair, new Pair(lengthX, lengthY));
+        BaseElementCollection res = new BaseElementCollection(nextPair, new Pair(lengthX, lengthY));
         return (E)res;
     }
 }
