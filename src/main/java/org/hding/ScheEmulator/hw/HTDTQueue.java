@@ -8,11 +8,9 @@ import java.util.Queue;
  */
 public class HTDTQueue {
     Queue<HTDT> runnableQueue;
-    Queue<HTDT> waitingQueue;
     Queue<HTDT> finishedQueue;
     public HTDTQueue() {
         runnableQueue = new PriorityQueue<HTDT>();
-        waitingQueue = new PriorityQueue<HTDT>();
         finishedQueue = new PriorityQueue<HTDT>();
     }
 }

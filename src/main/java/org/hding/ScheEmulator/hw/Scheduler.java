@@ -3,23 +3,37 @@ package org.hding.ScheEmulator.hw;
 import org.hding.ScheEmulator.sw.WorkGroup;
 import org.hding.ScheEmulator.sw.WorkItem;
 
+
 /**
  * Created by hding on 1/11/16.
  */
 public class Scheduler {
     public Scheduler() {
     }
-    public boolean schedule(QueueManager queueManager, HardwareThread ht) {
-        if (ht.getQueueItem().size() == 0 && queueManager.isQueueEmpty()) {
+    public boolean schedule(QueueManager queueManager, HardwareThread hardwareThread) {
+        if (hardwareThread.getQueueItem().size() == 0 && queueManager.isQueueEmpty()) {
             return true;
         }
-        if (ht.getQueueItem().size() == 0) {
+        if (hardwareThread.getQueueItem().size() == 0) {
             WorkGroup temp = queueManager.getWorkGroup();
+            if (temp == null ) {
+                return true;
+            }
             for (WorkItem wi : temp) {
-                ht.getQueueItem().offer(wi);
+                hardwareThread.getQueueItem().offer(wi);
             }
         }
         //consume remaining work items
+        for (HardwareSubthread hardwareSubthread : hardwareThread) {
+            if (!hardwareThread.getQueueItem().isEmpty()) {
+                hardwareSubthread.workItem = hardwareThread.getQueueItem().poll();
+            } else {
+                break;
+            }
+        }
+        if (hardwareThread.getQueueItem().isEmpty()) {
+            return true;
+        }
         return false;
     }
 }

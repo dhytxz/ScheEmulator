@@ -9,9 +9,9 @@ import java.util.Iterator;
  */
 public class BaseElementCollection<E extends BaseElementCollection>
         implements Iterable<E>, Comparable<BaseElementCollection> {
-    private Pair start;
-    private Pair step;
-    private Pair maxRange;
+    Pair start;
+    Pair step;
+    Pair maxRange;
     public BaseElementCollection(Pair start, Pair step, Pair maxRange) {
         this.start = start;
         this.step = step;
@@ -21,6 +21,11 @@ public class BaseElementCollection<E extends BaseElementCollection>
         this.start = start;
         this.step = new Pair(1, 1);
         this.maxRange = maxRange;
+    }
+    public BaseElementCollection(Pair start) {
+        this.start = start;
+        this.step = new Pair(1, 1);
+        this.maxRange = new Pair(1, 1);
     }
     @Override
     public Iterator<E> iterator() {
@@ -32,5 +37,9 @@ public class BaseElementCollection<E extends BaseElementCollection>
             return this.start.getY() - o.start.getY();
         }
         return this.start.getX() - o.start.getX();
+    }
+    @Override
+    public String toString() {
+        return start.toString() + ";" + step.toString() + ";" + maxRange.toString();
     }
 }

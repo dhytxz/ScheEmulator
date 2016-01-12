@@ -15,16 +15,16 @@ public class QueueManager {
         hwQueue.runnableQueue.offer(table);
     }
     public boolean isQueueEmpty() {
-        return hwQueue.runnableQueue.size() +
-               hwQueue.waitingQueue.size() == 0;
+        return hwQueue.runnableQueue.size() == 0;
     }
     public WorkGroup getWorkGroup() {
         while (!hwQueue.runnableQueue.isEmpty()){
             HTDT temp = hwQueue.runnableQueue.peek();
             if (temp.status == HTStatus.RUNNING && temp.groupQueue.size() == 0) {
                 if (hwQueue.runnableQueue.remove(temp)) {
-                    hwQueue.waitingQueue.offer(temp);
+                    hwQueue.finishedQueue.offer(temp);
                 }
+                temp.status = HTStatus.FINISHED;
             } else if (temp.status == HTStatus.READY) {
                 for (WorkGroup wg : temp.kernel) {
                     temp.groupQueue.offer(wg);
@@ -35,5 +35,6 @@ public class QueueManager {
                 return temp.groupQueue.poll();
             }
         }
+        return null;
     }
 }

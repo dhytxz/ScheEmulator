@@ -5,7 +5,7 @@ import org.hding.ScheEmulator.base.Pair;
 /**
  * Created by hding on 1/10/16.
  */
-public class WorkGroup extends BaseElementCollection {
+public class WorkGroup extends BaseElementCollection<WorkItem> {
     int id;
     Kernel belongsTo;
     public WorkGroup(Pair topLeft, Pair length) {
