@@ -4,6 +4,7 @@ import org.hding.ScheEmulator.base.HTStatus;
 import org.hding.ScheEmulator.sw.Kernel;
 import org.hding.ScheEmulator.sw.WorkGroup;
 
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -16,8 +17,13 @@ public class HTDT implements Comparable<HTDT> {
     HTStatus status;
     WorkGroup currWorkGroup;
     Queue<WorkGroup> groupQueue;
-    public int getEnterTimeStamp() {
-        return this.enterTimeStamp;
+    public HTDT(Kernel kernel, int enterTimeStamp, int priority) {
+        this.kernel = kernel;
+        this.enterTimeStamp = enterTimeStamp;
+        this.priority = priority;
+        this.status = HTStatus.READY;
+        currWorkGroup = null;
+        groupQueue = new PriorityQueue<WorkGroup>();
     }
     @Override
     public int compareTo(HTDT o) {

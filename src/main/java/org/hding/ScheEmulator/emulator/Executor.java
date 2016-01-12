@@ -8,24 +8,24 @@ import org.hding.ScheEmulator.hw.*;
 public class Executor {
     TaskPool taskPool;
     ComputeDevice computeDevice;
-    HTDTQueue hwQueue;
+    QueueManager queueManager;
     Scheduler scheduler;
     int timeStamp;
     public Executor(TaskPool taskPool, int numHT, int numHSTPerHT) {
         this.taskPool = taskPool;
         this.computeDevice = new ComputeDevice(numHT, numHSTPerHT);
-        this.hwQueue = new HTDTQueue();
+        this.queueManager = new QueueManager();
         this.scheduler = new Scheduler();
         timeStamp = 0;
     }
     public void run() {
         while (true) {
-            while (!taskPool.isEmpty() && taskPool.peekTask().getEnterTimeStamp() == timeStamp) {
-                hwQueue.addToRunnable(taskPool.getTask());
+            while (!taskPool.isEmpty() && taskPool.peekTask().enterTimeStamp == timeStamp) {
+                queueManager.add(taskPool.getTask().table);
             }
             boolean isAllFinished = true;
             for (HardwareThread ht : computeDevice) {
-                isAllFinished = isAllFinished && scheduler.schedule(hwQueue, ht);
+                isAllFinished = isAllFinished && scheduler.schedule(queueManager, ht);
             }
             if (taskPool.isEmpty() && isAllFinished) {
                 break;

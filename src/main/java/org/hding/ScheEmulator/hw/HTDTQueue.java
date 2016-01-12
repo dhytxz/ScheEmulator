@@ -8,17 +8,11 @@ import java.util.Queue;
  */
 public class HTDTQueue {
     Queue<HTDT> runnableQueue;
+    Queue<HTDT> waitingQueue;
     Queue<HTDT> finishedQueue;
     public HTDTQueue() {
         runnableQueue = new PriorityQueue<HTDT>();
+        waitingQueue = new PriorityQueue<HTDT>();
         finishedQueue = new PriorityQueue<HTDT>();
-    }
-    public void addToRunnable(HTDT table) {
-        runnableQueue.offer(table);
-    }
-    public void moveToFinished(HTDT table) {
-        if (runnableQueue.remove(table)) {
-            finishedQueue.offer(table);
-        }
     }
 }
